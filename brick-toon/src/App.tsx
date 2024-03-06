@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 // import router from './router/Router';
 // import GlobalStyle from './style/GlobalStyle';
 import styled from 'styled-components';
+import router from './router/Router';
 
 function App() {
   const Wrapper = styled.div`
@@ -17,8 +18,7 @@ function App() {
         <QueryErrorResetBoundary>
           {() => (
             <>
-              {/* <RouterProvider router={router} />
-              <GlobalStyle /> */}
+              <RouterProvider router={router} />
             </>
           )}
         </QueryErrorResetBoundary>
