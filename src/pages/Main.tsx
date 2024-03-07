@@ -1,3 +1,11 @@
+import Search from '../components/search/Search';
+
+
+
 export default function Main() {
-  return <div>Main</div>;
+  return (
+    <>
+      <Search />
+    </>
+  );
 }

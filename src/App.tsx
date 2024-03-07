@@ -8,6 +8,7 @@ import router from './router/Router';
 function App() {
   const Wrapper = styled.div`
     background-color: white;
+    width: 100vw;
     border: none;
   `;
   const queryClient = new QueryClient();
