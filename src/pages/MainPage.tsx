@@ -1,8 +1,6 @@
 import Search from '../components/search/Search';
 
-
-
-export default function Main() {
+export default function MainPage() {
   return (
     <>
       <Search />
