@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const BookListWrapper = styled.div`
-  margin-top: 2rem; /* 상단 여백 추가 */
+  margin-top: 2rem;
 `;
 
 const Table = styled.table`
@@ -24,11 +24,11 @@ const Td = styled.td`
 `;
 
 const TitleTd = styled(Td)`
-  width: 370px; /* 책 제목의 너비 설정 */
+  width: 370px;
 `;
 
 const TitleTh = styled(Th)`
-  width: 370px; /* 책 제목의 너비 설정 */
+  width: 370px;
 `;
 
 export default function BookList() {
