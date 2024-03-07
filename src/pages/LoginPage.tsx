@@ -7,7 +7,7 @@ const LoginWrapper = styled.div`
   background-color: #191769;
 `;
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <>
       <LoginWrapper>
