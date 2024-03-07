@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
   width: 100%;
-  height: 80px;
   background-color: #191769;
   color: white;
   position: fixed;
@@ -13,9 +12,7 @@ const HeaderWrapper = styled.header`
 
 const HeaderContent = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 1rem;
 `;
 
 const Logo = styled.p`
@@ -23,6 +20,8 @@ const Logo = styled.p`
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  left: 47%;
+  position: absolute;
 `;
 
 const Location = styled.p`

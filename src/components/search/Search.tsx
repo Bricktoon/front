@@ -8,6 +8,7 @@ const SearchWrapper = styled.div`
   position: absolute;
   top: 15%;
   align-items: center;
+  flex-direction: column;
 `;
 
 export default function Search() {
