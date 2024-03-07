@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LoginLogo from '../../assets/login.png';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -6,8 +7,9 @@ const LoginWrapper = styled.div`
   align-items: center;
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 2rem;
-  width: 50%;
+  padding: 2rem 2rem 0 2rem;
+  width: 35%;
+  height: 400px;
   margin: 0 auto;
   top: 50%;
   position: relative;
@@ -32,9 +34,16 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Logo = styled.img`
+  width: 150px;
+  padding: 5%;
+  margin-bottom: 3rem;
+`;
+
 export default function LoginInput() {
   return (
     <LoginWrapper>
+      <Logo src={LoginLogo} alt='logo' />
       <InputField type='text' placeholder='아이디를 입력하세요' />
       <InputField type='password' placeholder='비밀번호를 입력하세요' />
       <Button>로그인</Button>
