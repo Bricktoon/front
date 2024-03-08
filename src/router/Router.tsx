@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import MainPage from '../pages/MainPage';
 import HeaderLayout from '../layouts/HeaderLayout';
@@ -11,14 +11,14 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/login',
+        path: '/',
         element: <LoginPage />,
       },
       {
         element: <HeaderLayout />,
         children: [
           {
-            path: '/',
+            path: '/main',
             element: <MainPage />,
           },
           {
