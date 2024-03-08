@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { instance } from '../../../apis/Client';
 
 const InputWrapper = styled.div`
   display: flex;
   margin: 0 auto;
-
   align-items: center;
 `;
 
@@ -29,7 +29,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 0.5rem;
 `;
 
@@ -37,10 +36,18 @@ export default function Input() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchOption, setSearchOption] = useState('도서명');
 
-  const handleSearch = () => {
-    // 검색 기능 구현
-    console.log('검색어:', searchTerm);
-    console.log('검색 옵션:', searchOption);
+  const handleSearch = async () => {
+    try {
+      const response = await instance.get(`/book/list?type=${searchOption}&keyword=${searchTerm}`);
+      if (response && response.data && response.data.code === 'SUCCESS') {
+        // 검색 결과 처리
+        console.log(response.data.result);
+      } else {
+        console.error('서버에서 도서 목록을 가져오지 못했습니다.');
+      }
+    } catch (error) {
+      console.error('서버 오류:', error);
+    }
   };
 
   const handleReset = () => {
