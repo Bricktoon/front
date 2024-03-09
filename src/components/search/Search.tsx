@@ -1,4 +1,3 @@
-import BookList from './bookList/BookList';
 import Input from './input/Input';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +33,7 @@ const SearchWrapper = styled.div`
 const LogoutButton = styled.button`
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #dc3545;
+  background-color: #878787;
   color: white;
   border: none;
   border-radius: 4px;
