@@ -1,4 +1,4 @@
-import BookList from '../search/bookList/BookList';
+// import BookList from '../search/bookList/BookList';
 import styled from 'styled-components';
 import BookAddButton from './bookAdd/BookAddButton';
 
@@ -16,7 +16,7 @@ export default function Admin() {
     <>
       <AdminWrapper>
         <BookAddButton />
-        <BookList />
+        {/* <BookList /> */}
       </AdminWrapper>
     </>
   );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { instance } from '../../../apis/Client';
 
 const InputWrapper = styled.div`
   display: flex;
@@ -57,8 +58,69 @@ const BookInfoWrapper = styled.article`
   gap: 0.5rem;
 `;
 
+const ButtonAddFile = styled.label`
+  background-color: #a2785d;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const ButtonAddExcel = styled.button`
+  background-color: #a2785d;
+`;
+
+const FileInput = styled.input`
+  display: none;
+`;
 export default function BookAddButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [bookInfo, setBookInfo] = useState({
+    name: '',
+    genre: '',
+    location: '',
+    number: 0,
+  });
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await instance.post('/book/all', formData);
+
+      if (response && response.data) {
+        console.log('파일 업로드 성공');
+      } else {
+        console.error('파일 업로드 실패');
+      }
+    } catch (error) {
+      console.error('파일 업로드 중 오류 발생:', error);
+    }
+  };
+
+  const handleAddBook = async () => {
+    try {
+      const response = await instance.post('/book', bookInfo);
+
+      if (response && response.data) {
+        console.log('책 추가 성공:', response.data);
+      } else {
+        console.error('책 추가 실패');
+      }
+    } catch (error) {
+      console.error('책 추가 중 오류 발생:', error);
+    }
+  };
 
   const handleSearch = () => {
     setIsModalOpen(true);
@@ -66,6 +128,14 @@ export default function BookAddButton() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setBookInfo((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -83,15 +153,44 @@ export default function BookAddButton() {
             <CloseButton onClick={handleCloseModal}>X</CloseButton>
             <BookInfoWrapper>
               <label>책 제목</label>
-              <input type='text' placeholder='책 제목 입력' />
+              <input
+                type='text'
+                placeholder='책 제목 입력'
+                name='name'
+                value={bookInfo.name}
+                onChange={handleInputChange}
+              />
               <label>장르</label>
-              <input type='text' placeholder='장르 입력' />
+              <input
+                type='text'
+                placeholder='장르 입력'
+                name='genre'
+                value={bookInfo.genre}
+                onChange={handleInputChange}
+              />
               <label>권수</label>
-              <input type='number' placeholder='최종 권수 입력' />
+              <input
+                type='number'
+                placeholder='최종 권수 입력'
+                name='number'
+                value={bookInfo.number}
+                onChange={handleInputChange}
+              />
               <label>위치</label>
-              <input type='text' placeholder='위치 입력' />
+              <input
+                type='text'
+                placeholder='위치 입력'
+                name='location'
+                value={bookInfo.location}
+                onChange={handleInputChange}
+              />
             </BookInfoWrapper>
-            <ButtonAdd>추가하기</ButtonAdd>
+            <ButtonAdd onClick={handleAddBook}>추가하기</ButtonAdd>
+            <ButtonAddFile>
+              파일 추가하기
+              <FileInput type='file' accept='.xlsx, .xls, .csv' onChange={handleFileChange} />
+            </ButtonAddFile>
+            <ButtonAddExcel onClick={handleUpload}> 파일</ButtonAddExcel>
           </ModalContent>
         </ModalBackground>
       )}
