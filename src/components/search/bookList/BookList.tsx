@@ -1,36 +1,4 @@
-// BookList.tsx
 import styled from 'styled-components';
-
-const BookListWrapper = styled.div`
-  margin-top: 2rem;
-`;
-
-const Table = styled.table`
-  width: 780px;
-  margin-top: 5%;
-  border-collapse: collapse;
-`;
-
-const Th = styled.th`
-  background-color: #a2785d;
-  color: white;
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  text-align: left;
-`;
-
-const Td = styled.td`
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-`;
-
-const TitleTd = styled(Td)`
-  width: 370px;
-`;
-
-const TitleTh = styled(Th)`
-  width: 370px;
-`;
 
 interface Book {
   id: number;
@@ -70,3 +38,34 @@ export default function BookList({ books }: BookListProps) {
     </BookListWrapper>
   );
 }
+
+const BookListWrapper = styled.div`
+  margin-top: 2rem;
+`;
+
+const Table = styled.table`
+  width: 780px;
+  margin-top: 5%;
+  border-collapse: collapse;
+`;
+
+const Th = styled.th`
+  background-color: #a2785d;
+  color: white;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+`;
+
+const Td = styled.td`
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+`;
+
+const TitleTd = styled(Td)`
+  width: 370px;
+`;
+
+const TitleTh = styled(Th)`
+  width: 370px;
+`;
