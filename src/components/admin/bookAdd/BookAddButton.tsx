@@ -59,19 +59,25 @@ const BookInfoWrapper = styled.article`
 `;
 
 const ButtonAddFile = styled.label`
-  background-color: #a2785d;
-  color: white;
+  border: 1px solid black;
   padding: 0.5rem;
   border-radius: 4px;
   cursor: pointer;
 `;
 
 const ButtonAddExcel = styled.button`
-  background-color: #a2785d;
+  background-color: #b6b6b6;
 `;
 
 const FileInput = styled.input`
   display: none;
+`;
+
+const ButtonExcelWrapper = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 export default function BookAddButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -186,11 +192,13 @@ export default function BookAddButton() {
               />
             </BookInfoWrapper>
             <ButtonAdd onClick={handleAddBook}>추가하기</ButtonAdd>
-            <ButtonAddFile>
-              파일 추가하기
-              <FileInput type='file' accept='.xlsx, .xls, .csv' onChange={handleFileChange} />
-            </ButtonAddFile>
-            <ButtonAddExcel onClick={handleUpload}> 파일</ButtonAddExcel>
+            <ButtonExcelWrapper>
+              <ButtonAddFile>
+                엑셀 등록
+                <FileInput type='file' accept='.xlsx, .xls, .csv' onChange={handleFileChange} />
+              </ButtonAddFile>
+              <ButtonAddExcel onClick={handleUpload}> 추가하기</ButtonAddExcel>
+            </ButtonExcelWrapper>
           </ModalContent>
         </ModalBackground>
       )}
