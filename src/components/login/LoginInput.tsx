@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import LoginLogo from '../../assets/login.png';
 import { cleanHeaderInstance } from '../../apis/Client';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -45,18 +45,14 @@ const Logo = styled.img`
 
 export default function LoginInput() {
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState(''); // 아이디 입력값을 위한 상태
-  const [password, setPassword] = useState(''); // 비밀번호 입력값을 위한 상태
+  const [username, setUsername] = useState<string>(''); // 아이디 입력값을 위한 상태
+  const [password, setPassword] = useState<string>(''); // 비밀번호 입력값을 위한 상태
 
   const handleLogin = async () => {
-    const username: string = 'ansanuser';
-    const password: string = 'ansanuser';
-
     try {
       const response = await cleanHeaderInstance.post('/auth', {
-        username,
-        password,
+        username: username,
+        password: password,
       });
 
       if (response.status === 200) {
