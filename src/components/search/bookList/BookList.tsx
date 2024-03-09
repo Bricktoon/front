@@ -1,3 +1,4 @@
+// BookList.tsx
 import styled from 'styled-components';
 
 const BookListWrapper = styled.div`
@@ -31,15 +32,19 @@ const TitleTh = styled(Th)`
   width: 370px;
 `;
 
-export default function BookList() {
-  // 목업 데이터
-  const mockData = [
-    { title: '책 제목 1', volume: 3, location: '위치 A' },
-    { title: '책 제목 2', volume: 5, location: '위치 B' },
-    { title: '책 제목 3', volume: 2, location: '위치 C' },
-    { title: '책 제목 4', volume: 4, location: '위치 D' },
-  ];
+interface Book {
+  id: number;
+  name: string;
+  genre: string;
+  location: string;
+  number: number;
+}
 
+interface BookListProps {
+  books: Book[];
+}
+
+export default function BookList({ books }: BookListProps) {
   return (
     <BookListWrapper>
       <Table>
@@ -52,11 +57,11 @@ export default function BookList() {
           </tr>
         </thead>
         <tbody>
-          {mockData.map((book, index) => (
+          {books.map((book, index) => (
             <tr key={index}>
               <Td>{index + 1}</Td>
-              <TitleTd>{book.title}</TitleTd>
-              <Td>{book.volume}</Td>
+              <TitleTd>{book.name}</TitleTd>
+              <Td>{book.number}</Td>
               <Td>{book.location}</Td>
             </tr>
           ))}
