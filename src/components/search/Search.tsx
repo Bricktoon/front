@@ -15,7 +15,7 @@ export default function Search() {
     <>
       <SearchWrapper>
         <Input />
-        <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+        {/* <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton> */}
       </SearchWrapper>
     </>
   );
