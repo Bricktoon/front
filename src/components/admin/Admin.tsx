@@ -1,14 +1,16 @@
 // import BookList from '../search/bookList/BookList';
 import styled from 'styled-components';
 import BookAddButton from './bookAdd/BookAddButton';
+import EditInput from '../search/editInput/EditInput';
 
 const AdminWrapper = styled.div`
   width: 100%;
   display: flex;
-  position: absolute;
   top: 15%;
+  position: absolute;
   align-items: center;
   flex-direction: column;
+  gap: 2rem;
 `;
 
 export default function Admin() {
@@ -16,7 +18,7 @@ export default function Admin() {
     <>
       <AdminWrapper>
         <BookAddButton />
-        {/* <BookList /> */}
+        <EditInput />
       </AdminWrapper>
     </>
   );

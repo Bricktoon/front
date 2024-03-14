@@ -30,12 +30,12 @@ const SearchWrapper = styled.div`
   flex-direction: column;
 `;
 
-const LogoutButton = styled.button`
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #878787;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
+// const LogoutButton = styled.button`
+//   margin-top: 1rem;
+//   padding: 0.5rem 1rem;
+//   background-color: #878787;
+//   color: white;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+// `;
