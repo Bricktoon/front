@@ -19,6 +19,7 @@ export default function BookEdit({ books }: BookListProps) {
   const [editedName, setEditedName] = useState<string>('');
   const [editedNumber, setEditedNumber] = useState<number>(0);
   const [editedLocation, setEditedLocation] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleEdit = (book: Book) => {
     setEditingBook(book);
@@ -31,21 +32,26 @@ export default function BookEdit({ books }: BookListProps) {
     if (editingBook) {
       instance
         .patch(`/book/${editingBook.id}`, {
-          // PATCH 요청 보내기
           name: editedName,
-          genre: editingBook.genre, // 장르는 그대로 유지
+          genre: editingBook.genre,
           location: editedLocation,
           number: editedNumber,
         })
         .then((response) => {
           console.log('책 정보 수정 완료:', response.data);
           setEditingBook(null);
+          setShowModal(true); // 모달 표시
         })
         .catch((error) => {
           console.error('책 정보 수정 실패:', error);
           // 실패 처리
         });
     }
+  };
+
+  const resetFields = () => {
+    setShowModal(false);
+    window.location.reload();
   };
 
   return (
@@ -106,6 +112,14 @@ export default function BookEdit({ books }: BookListProps) {
           ))}
         </tbody>
       </Table>
+      {showModal && (
+        <Modal>
+          <ModalContent>
+            <p>책 정보가 수정되었습니다.</p>
+            <Button onClick={resetFields}>확인</Button>
+          </ModalContent>
+        </Modal>
+      )}
     </BookListWrapper>
   );
 }
@@ -154,4 +168,21 @@ const Button = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
+`;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
