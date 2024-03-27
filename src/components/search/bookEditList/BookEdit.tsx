@@ -49,6 +49,20 @@ export default function BookEdit({ books }: BookListProps) {
     }
   };
 
+  const handleDelete = (bookId: number) => {
+    if (window.confirm('정말로 이 책을 삭제하시겠습니까?')) {
+      instance
+        .delete(`/book/${bookId}`)
+        .then((response) => {
+          console.log('책 삭제 완료:', response.data);
+          setShowModal(true);
+        })
+        .catch((error) => {
+          console.error('책 삭제 실패:', error);
+        });
+    }
+  };
+
   const resetFields = () => {
     setShowModal(false);
     window.location.reload();
@@ -105,7 +119,11 @@ export default function BookEdit({ books }: BookListProps) {
               </Td>
               <Td>
                 {editingBook && editingBook.id === book.id ? (
-                  <Button onClick={handleSaveEdit}>저장</Button>
+                  <ButtonContainer>
+                    <Button onClick={handleSaveEdit}>저장</Button>
+                    <Button onClick={() => handleDelete(book.id)}>삭제</Button>{' '}
+                    {/* 삭제 버튼 추가 */}
+                  </ButtonContainer>
                 ) : null}
               </Td>
             </tr>
@@ -132,6 +150,11 @@ const Table = styled.table`
   width: 780px;
   margin-top: 5%;
   border-collapse: collapse;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `;
 
 const Th = styled.th`
@@ -168,6 +191,7 @@ const Button = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
+  width: 5rem;
 `;
 
 const Modal = styled.div`

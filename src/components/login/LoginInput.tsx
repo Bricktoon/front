@@ -31,6 +31,12 @@ export default function LoginInput() {
           navigate('/admin');
         } else if (userId === 4) {
           navigate('/main');
+        } else if (userId === 1) {
+          //안산어드민
+          navigate('/admin');
+        } else if (userId === 3) {
+          //안산유저
+          navigate('/main');
         } else {
           console.error('알 수 없는 사용자 ID입니다.');
         }
