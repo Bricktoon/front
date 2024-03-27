@@ -33,6 +33,12 @@ export default function Input() {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const handleReset = () => {
     setSearchTerm('');
     setSearchResults([]); // 리셋할 때 검색 결과 초기화
@@ -50,6 +56,7 @@ export default function Input() {
           placeholder='검색어를 입력하세요'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyPress} // 엔터키 이벤트 핸들러 추가
         />
         <ButtonWrapper>
           <Button onClick={handleSearch}>검색</Button>
