@@ -42,17 +42,18 @@ const LogoutButton = styled.button`
 `;
 
 export default function Header() {
+  const place: string | null = localStorage.getItem('place');
+
   const navigate = useNavigate();
   const handleLogout = () => {
-    // 로그아웃 로직 구현
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('place');
     navigate('/');
-    // 로그아웃 후에는 로그인 페이지로 이동하도록 설정할 수 있습니다.
   };
   return (
     <HeaderWrapper>
       <HeaderContent>
-        <Location>대학로점</Location>
+        <Location>{place}</Location>
         <Logo>콩툰</Logo>
         <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
       </HeaderContent>

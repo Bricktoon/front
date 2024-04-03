@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom';
 interface ApiResponseData {
   result: {
     id: number;
+    place: string;
     accessToken: string;
   };
 }
 
 export default function LoginInput() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>(''); // 아이디 입력값을 위한 상태
-  const [password, setPassword] = useState<string>(''); // 비밀번호 입력값을 위한 상태
-
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const handleLogin = async () => {
     try {
       const response = await cleanHeaderInstance.post<ApiResponseData>('/auth', {
@@ -26,6 +26,7 @@ export default function LoginInput() {
       if (response.status === 200) {
         console.log('로그인 성공', response);
         localStorage.setItem('accessToken', response.data.result.accessToken);
+        localStorage.setItem('place', response.data.result.place);
         const userId = response.data.result.id;
         if (userId === 2) {
           navigate('/admin');
