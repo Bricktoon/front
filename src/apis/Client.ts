@@ -23,7 +23,7 @@ export const getAccessTokenLocalStorage = () => {
 //   },
 // });
 
-const apiUrl = import.meta.env.VITE_APP_BASE_URL;
+const apiUrl = import.meta.env.VITE_APP_BASE_URL_2025;
 const accessTokend = localStorage.getItem('accessToken');
 console.log('토큰' + accessTokend);
 
@@ -35,7 +35,7 @@ export const cleanHeaderInstance = axios.create({
 });
 
 export const instance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_APP_BASE_URL_2025,
   withCredentials: true,
   headers: {
     Authorization: `Bearer ${accessTokend}`,
